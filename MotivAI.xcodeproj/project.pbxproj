@@ -12,10 +12,14 @@
 		813ADEB22D3FDC5D0076A9A9 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADEB12D3FDC5D0076A9A9 /* SuperwallKit */; };
 		813ADEFB2D3FE2610076A9A9 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADEFA2D3FE2610076A9A9 /* RevenueCat */; };
 		813ADEFD2D3FE2610076A9A9 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADEFC2D3FE2610076A9A9 /* RevenueCatUI */; };
+		979F9387308D711B232AFE3C /* Pods_MotivAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D60CF07A341E421CC61EC6 /* Pods_MotivAI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		675FA18C6873A5155E877B66 /* Pods-MotivAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotivAI.debug.xcconfig"; path = "Target Support Files/Pods-MotivAI/Pods-MotivAI.debug.xcconfig"; sourceTree = "<group>"; };
 		81DABBDE2D37A90400D762CE /* MotivAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotivAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93D60CF07A341E421CC61EC6 /* Pods_MotivAI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MotivAI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9BE4290DEE07790220E158 /* Pods-MotivAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotivAI.release.xcconfig"; path = "Target Support Files/Pods-MotivAI/Pods-MotivAI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -49,17 +53,38 @@
 				813ADE672D3FCF6F0076A9A9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				813ADEFD2D3FE2610076A9A9 /* RevenueCatUI in Frameworks */,
 				813ADEB22D3FDC5D0076A9A9 /* SuperwallKit in Frameworks */,
+				979F9387308D711B232AFE3C /* Pods_MotivAI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2443A8A1995264FCAD435F8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				675FA18C6873A5155E877B66 /* Pods-MotivAI.debug.xcconfig */,
+				AD9BE4290DEE07790220E158 /* Pods-MotivAI.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3937C19B65FE2348DB9EFA07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93D60CF07A341E421CC61EC6 /* Pods_MotivAI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		81DABBD52D37A90400D762CE = {
 			isa = PBXGroup;
 			children = (
 				81DABBE02D37A90400D762CE /* MotivAI */,
 				81DABBDF2D37A90400D762CE /* Products */,
+				2443A8A1995264FCAD435F8A /* Pods */,
+				3937C19B65FE2348DB9EFA07 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +103,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81DABBEC2D37A90600D762CE /* Build configuration list for PBXNativeTarget "MotivAI" */;
 			buildPhases = (
+				F49619BDAA72382169BF84B9 /* [CP] Check Pods Manifest.lock */,
 				81DABBDA2D37A90400D762CE /* Sources */,
 				81DABBDB2D37A90400D762CE /* Frameworks */,
 				81DABBDC2D37A90400D762CE /* Resources */,
@@ -149,6 +175,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F49619BDAA72382169BF84B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MotivAI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81DABBDA2D37A90400D762CE /* Sources */ = {
@@ -282,6 +333,7 @@
 		};
 		81DABBED2D37A90600D762CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 675FA18C6873A5155E877B66 /* Pods-MotivAI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -314,6 +366,7 @@
 		};
 		81DABBEE2D37A90600D762CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD9BE4290DEE07790220E158 /* Pods-MotivAI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
