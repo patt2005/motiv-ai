@@ -107,18 +107,20 @@ struct HomeView: View {
                     Spacer()
                     
                     HStack(spacing: 15) {
-                        Button(action: {
-                            Superwall.shared.register(event: "campaign_trigger")
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 13, style: .continuous)
-                                    .fill(AppConstants.shared.accentColor.opacity(0.9))
-                                    .frame(width: 47.5, height: 47.5)
-                                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
-                                
-                                Image(systemName: "crown.fill")
-                                    .foregroundStyle(.white)
-                                    .font(.system(size: 23, weight: .medium))
+                        if !appProvider.isUserSubscribed {
+                            Button(action: {
+                                Superwall.shared.register(event: "campaign_trigger")
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                        .fill(AppConstants.shared.accentColor.opacity(0.9))
+                                        .frame(width: 47.5, height: 47.5)
+                                        .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
+                                    
+                                    Image(systemName: "crown.fill")
+                                        .foregroundStyle(.white)
+                                        .font(.system(size: 23, weight: .medium))
+                                }
                             }
                         }
                         
