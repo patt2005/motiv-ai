@@ -70,7 +70,7 @@ struct SettingsView: View {
                 }
                 
                 Section(header: Text("Legal")) {
-                    Link(destination: URL(string: "https://codbun.com/chatai/privacypolicy")!) {
+                    Link(destination: URL(string: "https://codbun.com/MotivAI/privacypolicy")!) {
                         HStack {
                             Image(systemName: "lock.shield")
                                 .foregroundColor(AppConstants.shared.accentColor)
@@ -80,7 +80,7 @@ struct SettingsView: View {
                         }
                     }
 
-                    Link(destination: URL(string: "https://codbun.com/chatai/termsofuse")!) {
+                    Link(destination: URL(string: "https://codbun.com/MotivAI/termsofuse")!) {
                         HStack {
                             Image(systemName: "doc.text")
                                 .foregroundColor(AppConstants.shared.accentColor)
