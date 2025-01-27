@@ -12,9 +12,9 @@ import RevenueCat
 class AppProvider: ObservableObject {
     private init() {
         self.showOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
-        Purchases.shared.getCustomerInfo { (customerInfo, error) in
-            self.isUserSubscribed = customerInfo?.entitlements.all["pro"]?.isActive == true
-        }
+//        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+//            self.isUserSubscribed = customerInfo?.entitlements.all["pro"]?.isActive == true
+//        }
         DispatchQueue.main.async {
             Task {
                 self.quotes = await QuotesAPI.shared.fetchQuotes()
@@ -33,7 +33,7 @@ class AppProvider: ObservableObject {
     @Published var quotes = [Quote]()
     @Published var likedQuotes = [Quote]()
     
-    @Published var isUserSubscribed = false
+    @Published var isUserSubscribed = true
     
     func completeOnboarding() {
         AnalyticsManager.shared.logEvent(name: AnalyticsEventTutorialComplete)

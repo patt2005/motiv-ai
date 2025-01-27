@@ -129,7 +129,7 @@ struct OnboardingView: View {
                             requestReview()
                         }
                         appProvider.completeOnboarding()
-                        Superwall.shared.register(event: "campaign_trigger")
+//                        Superwall.shared.register(event: "campaign_trigger")
                     }
                 }
             }) {
