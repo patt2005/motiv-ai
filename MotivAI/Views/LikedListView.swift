@@ -10,6 +10,8 @@ import SwiftUI
 struct LikedListView: View {
     @ObservedObject private var appProvider = AppProvider.shared
     
+    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+    
     var body: some View {
         ScrollView {
             if appProvider.likedQuotes.isEmpty {
@@ -36,8 +38,14 @@ struct LikedListView: View {
             } else {
                 LazyVStack(spacing: 15) {
                     ForEach(appProvider.likedQuotes.reversed()) { quote in
-                        QuoteCardView(quote: quote)
-                            .padding(.horizontal, 16)
+                        Button(action: {
+                            impactFeedback.impactOccurred()
+                            appProvider.selectedQuote = quote
+                            appProvider.showQuoteDetails = true
+                        }) {
+                            QuoteCardView(quote: quote, feedback: impactFeedback)
+                                .padding(.horizontal, 16)
+                        }
                     }
                 }
                 .padding(.top, 20)

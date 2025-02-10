@@ -38,10 +38,22 @@ struct ContentView: View {
                     case .likedQuotesView: LikedListView()
                     case .settingsView: SettingsView()
                     case .searchView: SearchView()
+                    case .categoriesView: QuoteCategoryListView()
+                    case .quotesListView(let tagName) : QuotesListView(tagName: tagName)
+                    case .authorsListView: AuthorsListView()
+                    case .authorDetailsView(authorInfo: let details): AuthorDetailsView(author: details)
+                    case .manageSubscriptionView: ManageSubscriptionView()
+                    case .restoreView : RestoreView()
                     }
                 }
                 .fullScreenCover(isPresented: $appProvider.showOnboarding) {
                     OnboardingView()
+                }
+                .fullScreenCover(isPresented: $appProvider.showInfoOnboarding) {
+                    InfoOnboardingView()
+                }
+                .sheet(isPresented: $appProvider.showQuoteDetails) {
+                    QuoteDetailsView()
                 }
         }
         .preferredColorScheme(.light)

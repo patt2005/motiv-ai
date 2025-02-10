@@ -13,22 +13,38 @@ let purchaseController = RCPurchaseController()
 class AppConstants {
     static let shared = AppConstants()
     
-    private init() {}
+    private init() {
+        userId = UserDefaults.standard.string(forKey: "userId")
+    }
+    
+    let appCode = "motiv-ai"
+    let appVersion = "1.0.4"
+    var userId: String? = nil
     
     let backgroundColor = Color(hex: "FBF5DD")
     let textColor = Color(hex: "16404D")
     let secondaryColor = Color(hex: "A6CDC6")
     let accentColor = Color(hex: "DDA853")
     
-    let quotesApiKey = "XvDHs3J6i65xzZg4ZeJcsA==wlF4Ih7rR9uefcJZ"
-    let superWallApiKey = "pk_fd57c8cf0786d7b100e8f5c9bd5c7f68cf20dd4a22ff2a9a"
     let revenueCatApiKey = "appl_GSNCUVRGbpiNhnlDZXWjDVOgmog"
+    let superWallApiKey = "pk_fd57c8cf0786d7b100e8f5c9bd5c7f68cf20dd4a22ff2a9a"
+    
+    func saveUserId(_ userId: String) {
+        self.userId = userId
+        UserDefaults.standard.set(userId, forKey: "userId")
+    }
 }
 
 enum NavigationDestination: Hashable {
     case settingsView
     case likedQuotesView
     case searchView
+    case categoriesView
+    case quotesListView(tagName: String)
+    case authorsListView
+    case authorDetailsView(authorInfo: AuthorInfo)
+    case restoreView
+    case manageSubscriptionView
 }
 
 extension Color {
@@ -47,7 +63,7 @@ extension Color {
         default:
             (a, r, g, b) = (1, 1, 1, 0)
         }
-
+        
         self.init(
             .sRGB,
             red: Double(r) / 255,

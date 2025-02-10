@@ -7,7 +7,6 @@
 
 import SwiftUI
 import FirebaseAnalytics
-import SuperwallKit
 
 struct OnboardingView: View {
     struct OnboardingStep {
@@ -35,7 +34,8 @@ struct OnboardingView: View {
         OnboardingStep(
             image: "4",
             title: "Your Opinion Matters",
-            description: "Help us grow by leaving a positive rating. Your feedback means the world to us!"),
+            description: "Help us grow by leaving a positive rating. Your feedback means the world to us!"
+        ),
     ]
     
     @Environment(\.requestReview) var requestReview
@@ -128,8 +128,8 @@ struct OnboardingView: View {
                         if !hasRequestedReview {
                             requestReview()
                         }
-                        appProvider.completeOnboarding()
-//                        Superwall.shared.register(event: "campaign_trigger")
+                        appProvider.showOnboarding = false
+                        appProvider.showInfoOnboarding = true
                     }
                 }
             }) {

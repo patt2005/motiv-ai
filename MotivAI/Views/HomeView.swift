@@ -6,15 +6,41 @@
 //
 
 import SwiftUI
+import Combine
 import SuperwallKit
 
 class HomeViewModel: ObservableObject {
-    @Published var isSharing: Bool = false
-    @Published var selectedQuote: Quote?
+    @Published var currentIndex = 0
+    
+    @ObservedObject private var appProvider = AppProvider.shared
+    
+    private var cancellables = Set<AnyCancellable>()
+    private var isFetching = false
+    
+    init() {
+        $currentIndex
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newIndex in
+                guard let self = self else { return }
+                appProvider.page += 1
+                
+                if newIndex >= self.appProvider.quotes.count - 90, !self.isFetching {
+                    self.isFetching = true
+                    Task {
+                        let newQuotes = await QuotesAPI.shared.fetchQuotes()
+                        DispatchQueue.main.async {
+                            self.appProvider.quotes += newQuotes
+                            self.isFetching = false
+                        }
+                    }
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 struct HomeView: View {
-    @State private var currentIndex = 0
     @GestureState private var dragOffset: CGFloat = 0
     
     @ObservedObject private var appProvider = AppProvider.shared
@@ -22,48 +48,75 @@ struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewModel()
     
+    private var flippingAngle: Angle = .degrees(0)
+    
     var body: some View {
         ZStack {
-            GeometryReader { geometry in
-                VStack(spacing: 0) {
-                    ForEach(appProvider.quotes, id: \.content) { quote in
-                        VStack(spacing: 0) {
-                            QuoteView(quote: quote, feedback: impactFeedback, isSharing: $viewModel.isSharing, selectedQuote: $viewModel.selectedQuote)
+            GeometryReader { proxy in
+                TabView(selection: $viewModel.currentIndex) {
+                    if appProvider.isUserSubscribed {
+                        ForEach(0..<appProvider.quotes.count, id: \.self) { index in
+                            QuoteView(quote: appProvider.quotes[index], feedback: impactFeedback, isBlured: false)
+                                .padding(.leading, 35)
+                                .padding(.trailing, 12.5)
+                                .frame(width: proxy.size.width)
+                                .frame(maxHeight: .infinity)
+                                .rotationEffect(.degrees(-90))
                         }
-                        .padding(.horizontal, 35)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .background(AppConstants.shared.backgroundColor)
-                    }
-                }
-                .offset(y: -CGFloat(currentIndex) * geometry.size.height + dragOffset)
-                .animation(.interpolatingSpring(stiffness: 150, damping: 50), value: currentIndex)
-                .gesture(
-                    DragGesture()
-                        .updating($dragOffset) { value, state, _ in
-                            state = value.translation.height
-                        }
-                        .onEnded { value in
-                            let threshold = geometry.size.height / 40
-                            let dragAmount = value.translation.height
-                            
-                            if dragAmount < -threshold && currentIndex < appProvider.quotes.count - 1 {
-                                currentIndex += 1
-                            } else if dragAmount > threshold && currentIndex > 0 {
-                                currentIndex -= 1
+                    } else {
+                        if appProvider.quotes.count > 11 {
+                            ForEach(0..<10, id: \.self) { index in
+                                QuoteView(quote: appProvider.quotes[index], feedback: impactFeedback, isBlured: false)
+                                    .padding(.leading, 35)
+                                    .padding(.trailing, 12.5)
+                                    .frame(width: proxy.size.width)
+                                    .frame(maxHeight: .infinity)
+                                    .rotationEffect(.degrees(-90))
+                            }
+                            ForEach(11..<appProvider.quotes.count, id: \.self) { index in
+                                QuoteView(quote: appProvider.quotes[index], feedback: impactFeedback, isBlured: true)
+                                    .padding(.leading, 35)
+                                    .padding(.trailing, 12.5)
+                                    .frame(width: proxy.size.width)
+                                    .frame(maxHeight: .infinity)
+                                    .rotationEffect(.degrees(-90))
                             }
                         }
-                )
-                .onAppear {
-                    impactFeedback.prepare()
+                    }
                 }
+                .frame(width: proxy.size.height, height: proxy.size.width)
+                .rotationEffect(.degrees(90), anchor: .topLeading)
+                .offset(x: proxy.size.width)
             }
-            .sheet(isPresented: $viewModel.isSharing) {
-                ActivityView(activityItems: [
-                    "\(viewModel.selectedQuote?.content ?? "") - \(viewModel.selectedQuote?.author ?? "")"])
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onAppear {
+                impactFeedback.prepare()
+            }
+            .sheet(isPresented: $appProvider.isSharingQuote) {
+                SharingView(activityItems: [
+                    "\(appProvider.selectedQuote?.content ?? "") - \(appProvider.selectedQuote?.author ?? "")"])
             }
             
             VStack {
                 HStack {
+                    if !appProvider.isUserSubscribed {
+                        Button(action: {
+                            impactFeedback.impactOccurred()
+                            Superwall.shared.register(event: "campaign_trigger")
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                    .fill(AppConstants.shared.accentColor.opacity(0.9))
+                                    .frame(width: 47.5, height: 47.5)
+                                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
+                                
+                                Image(systemName: "crown.fill")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 23, weight: .medium))
+                            }
+                        }
+                    }
+                    
                     Spacer()
                     
                     Button(action: {
@@ -89,38 +142,56 @@ struct HomeView: View {
                 Spacer()
                 
                 HStack(alignment: .center) {
-                    Button(action: {
-                        appProvider.navigationPath.append(.searchView)
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 13, style: .continuous)
-                                .fill(AppConstants.shared.accentColor.opacity(0.9))
-                                .frame(width: 47.5, height: 47.5)
-                                .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
-                            
-                            Image(systemName: "magnifyingglass")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 23, weight: .medium))
+                    HStack(spacing: 15) {
+                        Button(action: {
+                            impactFeedback.impactOccurred()
+                            appProvider.navigationPath.append(.searchView)
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                    .fill(AppConstants.shared.accentColor.opacity(0.9))
+                                    .frame(width: 47.5, height: 47.5)
+                                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
+                                
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 23, weight: .medium))
+                            }
+                        }
+                        
+                        Button(action: {
+                            impactFeedback.impactOccurred()
+                            appProvider.navigationPath.append(.categoriesView)
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                    .fill(AppConstants.shared.accentColor.opacity(0.9))
+                                    .frame(width: 47.5, height: 47.5)
+                                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
+                                
+                                Image(systemName: "square.grid.2x2.fill")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 23, weight: .medium))
+                            }
                         }
                     }
                     
                     Spacer()
                     
                     HStack(spacing: 15) {
-                        if !appProvider.isUserSubscribed {
-                            Button(action: {
-                                Superwall.shared.register(event: "campaign_trigger")
-                            }) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 13, style: .continuous)
-                                        .fill(AppConstants.shared.accentColor.opacity(0.9))
-                                        .frame(width: 47.5, height: 47.5)
-                                        .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
-                                    
-                                    Image(systemName: "crown.fill")
-                                        .foregroundStyle(.white)
-                                        .font(.system(size: 23, weight: .medium))
-                                }
+                        Button(action: {
+                            impactFeedback.impactOccurred()
+                            appProvider.navigationPath.append(.authorsListView)
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                                    .fill(AppConstants.shared.accentColor.opacity(0.9))
+                                    .frame(width: 47.5, height: 47.5)
+                                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 3)
+                                
+                                Image(systemName: "person.2.fill")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 23, weight: .medium))
                             }
                         }
                         

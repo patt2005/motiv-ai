@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		813ADE652D3FCF6F0076A9A9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADE642D3FCF6F0076A9A9 /* FirebaseAnalytics */; };
-		813ADE672D3FCF6F0076A9A9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADE662D3FCF6F0076A9A9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		813ADEB22D3FDC5D0076A9A9 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADEB12D3FDC5D0076A9A9 /* SuperwallKit */; };
-		813ADEFB2D3FE2610076A9A9 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADEFA2D3FE2610076A9A9 /* RevenueCat */; };
-		813ADEFD2D3FE2610076A9A9 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 813ADEFC2D3FE2610076A9A9 /* RevenueCatUI */; };
+		8198D9BC2D560226002376F0 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 8198D9BB2D560226002376F0 /* RevenueCat */; };
+		8198D9BE2D560226002376F0 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8198D9BD2D560226002376F0 /* RevenueCatUI */; };
+		8198D9C12D560273002376F0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8198D9C02D560273002376F0 /* FirebaseAnalytics */; };
+		8198D9C32D560273002376F0 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8198D9C22D560273002376F0 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		8198D9C52D5602A0002376F0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8198D9C42D5602A0002376F0 /* FirebaseMessaging */; };
+		8198D9C82D560325002376F0 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8198D9C72D560325002376F0 /* SuperwallKit */; };
+		81FCD4ED2D47D23F00091CFC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81FCD4EC2D47D23F00091CFC /* StoreKit.framework */; };
 		979F9387308D711B232AFE3C /* Pods_MotivAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D60CF07A341E421CC61EC6 /* Pods_MotivAI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		675FA18C6873A5155E877B66 /* Pods-MotivAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotivAI.debug.xcconfig"; path = "Target Support Files/Pods-MotivAI/Pods-MotivAI.debug.xcconfig"; sourceTree = "<group>"; };
+		817DA6192D55F4AA00D93BDF /* SuperwallKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SuperwallKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		817DA61C2D55F4B700D93BDF /* SuperwallKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SuperwallKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DABBDE2D37A90400D762CE /* MotivAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotivAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81FCD4EC2D47D23F00091CFC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		93D60CF07A341E421CC61EC6 /* Pods_MotivAI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MotivAI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9BE4290DEE07790220E158 /* Pods-MotivAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotivAI.release.xcconfig"; path = "Target Support Files/Pods-MotivAI/Pods-MotivAI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,12 +53,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				813ADEFB2D3FE2610076A9A9 /* RevenueCat in Frameworks */,
-				813ADE652D3FCF6F0076A9A9 /* FirebaseAnalytics in Frameworks */,
-				813ADE672D3FCF6F0076A9A9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				813ADEFD2D3FE2610076A9A9 /* RevenueCatUI in Frameworks */,
-				813ADEB22D3FDC5D0076A9A9 /* SuperwallKit in Frameworks */,
+				8198D9BE2D560226002376F0 /* RevenueCatUI in Frameworks */,
+				8198D9C32D560273002376F0 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				8198D9C52D5602A0002376F0 /* FirebaseMessaging in Frameworks */,
+				8198D9C82D560325002376F0 /* SuperwallKit in Frameworks */,
+				81FCD4ED2D47D23F00091CFC /* StoreKit.framework in Frameworks */,
 				979F9387308D711B232AFE3C /* Pods_MotivAI.framework in Frameworks */,
+				8198D9C12D560273002376F0 /* FirebaseAnalytics in Frameworks */,
+				8198D9BC2D560226002376F0 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +79,9 @@
 		3937C19B65FE2348DB9EFA07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				817DA61C2D55F4B700D93BDF /* SuperwallKit.framework */,
+				817DA6192D55F4AA00D93BDF /* SuperwallKit.bundle */,
+				81FCD4EC2D47D23F00091CFC /* StoreKit.framework */,
 				93D60CF07A341E421CC61EC6 /* Pods_MotivAI.framework */,
 			);
 			name = Frameworks;
@@ -116,11 +126,12 @@
 			);
 			name = MotivAI;
 			packageProductDependencies = (
-				813ADE642D3FCF6F0076A9A9 /* FirebaseAnalytics */,
-				813ADE662D3FCF6F0076A9A9 /* FirebaseAnalyticsWithoutAdIdSupport */,
-				813ADEB12D3FDC5D0076A9A9 /* SuperwallKit */,
-				813ADEFA2D3FE2610076A9A9 /* RevenueCat */,
-				813ADEFC2D3FE2610076A9A9 /* RevenueCatUI */,
+				8198D9BB2D560226002376F0 /* RevenueCat */,
+				8198D9BD2D560226002376F0 /* RevenueCatUI */,
+				8198D9C02D560273002376F0 /* FirebaseAnalytics */,
+				8198D9C22D560273002376F0 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				8198D9C42D5602A0002376F0 /* FirebaseMessaging */,
+				8198D9C72D560325002376F0 /* SuperwallKit */,
 			);
 			productName = MotivAI;
 			productReference = 81DABBDE2D37A90400D762CE /* MotivAI.app */;
@@ -151,9 +162,9 @@
 			mainGroup = 81DABBD52D37A90400D762CE;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				813ADE632D3FCF6F0076A9A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				813ADEB02D3FDC5D0076A9A9 /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
-				813ADEF92D3FE2610076A9A9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				8198D9BA2D560226002376F0 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				8198D9BF2D560273002376F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8198D9C62D560325002376F0 /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 81DABBDF2D37A90400D762CE /* Products */;
@@ -336,8 +347,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MotivAI/MotivAI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"MotivAI/Preview Content\"";
 				DEVELOPMENT_TEAM = VGKDATW82L;
 				ENABLE_PREVIEWS = YES;
@@ -347,7 +359,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -355,7 +366,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codbun.motiv.ai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -370,8 +381,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MotivAI/MotivAI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"MotivAI/Preview Content\"";
 				DEVELOPMENT_TEAM = VGKDATW82L;
 				ENABLE_PREVIEWS = YES;
@@ -381,7 +393,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -389,7 +400,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codbun.motiv.ai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -422,57 +433,62 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		813ADE632D3FCF6F0076A9A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		8198D9BA2D560226002376F0 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8198D9BF2D560273002376F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
+				minimumVersion = 11.8.1;
 			};
 		};
-		813ADEB02D3FDC5D0076A9A9 /* XCRemoteSwiftPackageReference "Superwall-iOS" */ = {
+		8198D9C62D560325002376F0 /* XCRemoteSwiftPackageReference "Superwall-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/superwall/Superwall-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.12.2;
-			};
-		};
-		813ADEF92D3FE2610076A9A9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.14.6;
+				minimumVersion = 3.12.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		813ADE642D3FCF6F0076A9A9 /* FirebaseAnalytics */ = {
+		8198D9BB2D560226002376F0 /* RevenueCat */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 813ADE632D3FCF6F0076A9A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		813ADE662D3FCF6F0076A9A9 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 813ADE632D3FCF6F0076A9A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		813ADEB12D3FDC5D0076A9A9 /* SuperwallKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 813ADEB02D3FDC5D0076A9A9 /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
-			productName = SuperwallKit;
-		};
-		813ADEFA2D3FE2610076A9A9 /* RevenueCat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 813ADEF92D3FE2610076A9A9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			package = 8198D9BA2D560226002376F0 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCat;
 		};
-		813ADEFC2D3FE2610076A9A9 /* RevenueCatUI */ = {
+		8198D9BD2D560226002376F0 /* RevenueCatUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 813ADEF92D3FE2610076A9A9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			package = 8198D9BA2D560226002376F0 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCatUI;
+		};
+		8198D9C02D560273002376F0 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8198D9BF2D560273002376F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8198D9C22D560273002376F0 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8198D9BF2D560273002376F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		8198D9C42D5602A0002376F0 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8198D9BF2D560273002376F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		8198D9C72D560325002376F0 /* SuperwallKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8198D9C62D560325002376F0 /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
+			productName = SuperwallKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

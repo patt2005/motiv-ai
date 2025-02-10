@@ -2,7 +2,7 @@
 //  RCPurchaseController.swift
 //  MotivAI
 //
-//  Created by Petru Grigor on 21.01.2025.
+//  Created by Petru Grigor on 07.02.2025.
 //
 
 import SuperwallKit
@@ -23,6 +23,9 @@ final class RCPurchaseController: PurchaseController {
             for await customerInfo in Purchases.shared.customerInfoStream {
                 let hasActiveSubscription = !customerInfo.entitlements.activeInCurrentEnvironment.isEmpty
                 if hasActiveSubscription {
+                    DispatchQueue.main.async {
+                        AppProvider.shared.isUserSubscribed = true
+                    }
                     Superwall.shared.subscriptionStatus = .active
                 } else {
                     Superwall.shared.subscriptionStatus = .inactive
@@ -43,10 +46,13 @@ final class RCPurchaseController: PurchaseController {
             let purchaseDate = Date()
             let revenueCatResult = try await Purchases.shared.purchase(product: storeProduct)
             if revenueCatResult.userCancelled {
+                await Superwall.shared.dismiss()
+                Superwall.shared.register(event: "special_offer_trigger")
                 return .cancelled
             } else {
                 if let transaction = revenueCatResult.transaction,
                    purchaseDate > transaction.purchaseDate {
+                    AppProvider.shared.isUserSubscribed = true
                     return .restored
                 } else {
                     AppProvider.shared.isUserSubscribed = true

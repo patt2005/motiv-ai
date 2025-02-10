@@ -11,6 +11,8 @@ import StoreKit
 struct SettingsView: View {
     @State private var isSharing = false
     @Environment(\.requestReview) var requestReview
+    
+    @ObservedObject private var provider = AppProvider.shared
 
     var body: some View {
         ZStack {
@@ -35,7 +37,7 @@ struct SettingsView: View {
                     Button(action: {
                         let email = "mihai@codbun.com"
                         let subject = "Support Request"
-                        let body = "Hi, I need help with..."
+                        let body = "Hi, I need help with... (Motivation \(AppConstants.shared.appVersion)"
                         let mailtoURL = "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&body=\(body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
                         
                         if let url = URL(string: mailtoURL) {
@@ -68,6 +70,38 @@ struct SettingsView: View {
                         }
                     }
                 }
+
+                Section(header: Text("About Us")) {
+                    Link(destination: URL(string: "https://www.linkedin.com/company/codbun")!) {
+                        HStack {
+                            Image(systemName: "person.2.fill")
+                                .foregroundColor(AppConstants.shared.accentColor)
+                                .font(.headline)
+                            Text("Follow us")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    
+                    Link(destination: URL(string: "https://codbun.com/About")!) {
+                        HStack {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(AppConstants.shared.accentColor)
+                                .font(.title2)
+                            Text("About us")
+                                .foregroundColor(.gray)
+                        }
+                    }
+
+                    Link(destination: URL(string: "https://codbun.com/Work")!) {
+                        HStack {
+                            Image(systemName: "app.badge")
+                                .foregroundColor(AppConstants.shared.accentColor)
+                                .font(.title2)
+                            Text("Our Apps")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                }
                 
                 Section(header: Text("Legal")) {
                     Link(destination: URL(string: "https://codbun.com/MotivAI/privacypolicy")!) {
@@ -89,25 +123,27 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                         }
                     }
-                }
-
-                Section(header: Text("About Us")) {
-                    Link(destination: URL(string: "https://codbun.com/About")!) {
+                    
+                    Button(action: {
+                        provider.navigationPath.append(.restoreView)
+                    }) {
                         HStack {
-                            Image(systemName: "info.circle")
+                            Image(systemName: "dollarsign.arrow.circlepath")
                                 .foregroundColor(AppConstants.shared.accentColor)
-                                .font(.title2)
-                            Text("About us")
+                                .font(.title3)
+                            Text("Restore Purchase")
                                 .foregroundColor(.gray)
                         }
                     }
-
-                    Link(destination: URL(string: "https://codbun.com/Work")!) {
+                    
+                    Button(action: {
+                        provider.navigationPath.append(.manageSubscriptionView)
+                    }) {
                         HStack {
-                            Image(systemName: "app.badge")
+                            Image(systemName: "creditcard.fill")
                                 .foregroundColor(AppConstants.shared.accentColor)
-                                .font(.title2)
-                            Text("Our Apps")
+                                .font(.headline)
+                            Text("Manage Subscription")
                                 .foregroundColor(.gray)
                         }
                     }
@@ -116,8 +152,8 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
         }
         .sheet(isPresented: $isSharing) {
-            ActivityView(activityItems: [
-                "https://apps.apple.com/us/app/meme-ai-meme-coin-tracker-app/id6738891806"])
+            SharingView(activityItems: [
+                "https://apps.apple.com/us/app/motivation-stoic-daily-quotes/id6740817263"])
         }
         .navigationTitle(Text("Settings"))
     }

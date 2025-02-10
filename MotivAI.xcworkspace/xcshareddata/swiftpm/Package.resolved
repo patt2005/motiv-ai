@@ -1,5 +1,5 @@
 {
-  "originHash" : "0489da661a9136745a9e99e2ebb3d594b2124f3a53055a926913dbf070d494a7",
+  "originHash" : "3c08595639bd8dfc5f5990428c9e4bcae180255054b3358c72da95cd240cb744",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "0d885d28250fb1196b614bc9455079b75c531f72",
-        "version" : "11.7.0"
+        "revision" : "6318278e8e64d21f0fdcc69004395e4d34048aaf",
+        "version" : "11.8.1"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "85b7b231882c3c472b8bda4fb495324d3f19bab6",
-        "version" : "4.2.0"
+        "revision" : "3cdb78efb79b4a5383c3911488d8025bfc545b5e",
+        "version" : "4.3.0"
       }
     },
     {
@@ -112,10 +112,10 @@
     {
       "identity" : "purchases-ios-spm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/RevenueCat/purchases-ios-spm",
+      "location" : "https://github.com/RevenueCat/purchases-ios-spm.git",
       "state" : {
-        "revision" : "374d5d18950c0a9ff8a8016e3f36aa3e85e96ac7",
-        "version" : "5.15.0"
+        "revision" : "8bfab6b8e76e2bdc88d48dae1e34bc6e842f0bf8",
+        "version" : "5.16.1"
       }
     },
     {
@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/superwall/Superscript-iOS",
       "state" : {
-        "revision" : "a917ad513e171e658a73f9ae7329f3cffa42f173",
-        "version" : "0.1.16"
+        "revision" : "9ecdb97d84e94cdde3bfa63401903ec764a8f414",
+        "version" : "0.1.17"
       }
     },
     {
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/superwall/Superwall-iOS",
       "state" : {
-        "revision" : "2b9e48ab94cd22f7bd59225e2c7020d36b09c66d",
-        "version" : "3.12.2"
+        "revision" : "cc9b758999aacdb1a85544947f5426dae8edaa12",
+        "version" : "3.12.4"
       }
     },
     {

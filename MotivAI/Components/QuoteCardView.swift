@@ -10,8 +10,11 @@ import SwiftUI
 struct QuoteCardView: View {
     @ObservedObject var quote: Quote
     
-    init(quote: Quote) {
+    let feedback: UIImpactFeedbackGenerator
+    
+    init(quote: Quote, feedback: UIImpactFeedbackGenerator) {
         self.quote = quote
+        self.feedback = feedback
     }
     
     var body: some View {
@@ -29,6 +32,7 @@ struct QuoteCardView: View {
             HStack {
                 Spacer()
                 Button(action: {
+                    feedback.impactOccurred()
                     if quote.isLiked {
                         AppProvider.shared.removeQuoteFromLiked(quote)
                     } else {

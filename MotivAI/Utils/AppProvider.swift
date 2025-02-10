@@ -7,17 +7,16 @@
 
 import Foundation
 import FirebaseAnalytics
-import RevenueCat
+import SuperwallKit
 
 class AppProvider: ObservableObject {
     private init() {
         self.showOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
-//        Purchases.shared.getCustomerInfo { (customerInfo, error) in
-//            self.isUserSubscribed = customerInfo?.entitlements.all["pro"]?.isActive == true
-//        }
         DispatchQueue.main.async {
             Task {
                 self.quotes = await QuotesAPI.shared.fetchQuotes()
+                self.quoteCategories = await QuotesAPI.shared.fetchCategories()
+                self.authors = await QuotesAPI.shared.fetchAuthors()
             }
         }
         loadLikedQuotes()
@@ -29,16 +28,27 @@ class AppProvider: ObservableObject {
     @Published var navigationPath: [NavigationDestination] = []
     
     @Published var showOnboarding = false
+    @Published var showInfoOnboarding = false
+    @Published var isSharingQuote: Bool = false
+    
+    @Published var authors: [AuthorInfo] = []
+    
+    @Published var quoteCategories: [QuoteCategory] = []
     
     @Published var quotes = [Quote]()
     @Published var likedQuotes = [Quote]()
     
-    @Published var isUserSubscribed = true
+    @Published var isUserSubscribed = false
+    
+    @Published var showQuoteDetails = false
+    @Published var selectedQuote: Quote?
+    
+    @Published var page: Int = 1
     
     func completeOnboarding() {
         AnalyticsManager.shared.logEvent(name: AnalyticsEventTutorialComplete)
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
-        self.showOnboarding = false
+        self.showInfoOnboarding = false
     }
     
     func saveLikedQuotes() {
@@ -50,7 +60,7 @@ class AppProvider: ObservableObject {
         }
     }
     
-    func loadLikedQuotes() {
+    private func loadLikedQuotes() {
         let data = UserDefaults.standard.data(forKey: "likedQuotes")
         if let data = data {
             do {
@@ -63,9 +73,13 @@ class AppProvider: ObservableObject {
     }
     
     func addQuoteToLiked(_ quote: Quote) {
-        likedQuotes.append(quote)
-        quote.isLiked = true
-        saveLikedQuotes()
+        if isUserSubscribed || likedQuotes.count < 10 {
+            likedQuotes.append(quote)
+            quote.isLiked = true
+            saveLikedQuotes()
+        } else {
+            Superwall.shared.register(event: "campaign_trigger")
+        }
     }
     
     func removeQuoteFromLiked(_ quote: Quote) {
