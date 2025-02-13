@@ -19,7 +19,7 @@ class UserAPI {
     }
     
     func registerUser(withData data: [String: Any]) async throws {
-        guard let url = URL(string: "http://localhost:5287/api/user/register-user?applicationCode=\(AppConstants.shared.appCode)") else { throw URLError(.badURL) }
+        guard let url = URL(string: "https://center.codbun.com/api/user/register-user?applicationCode=\(AppConstants.shared.appCode)") else { throw URLError(.badURL) }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

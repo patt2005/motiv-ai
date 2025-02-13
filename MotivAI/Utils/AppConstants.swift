@@ -17,7 +17,7 @@ class AppConstants {
         userId = UserDefaults.standard.string(forKey: "userId")
     }
     
-    let appCode = "motiv-ai"
+    let appCode = "motivation"
     let appVersion = "1.0.4"
     var userId: String? = nil
     
