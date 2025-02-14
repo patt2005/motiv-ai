@@ -17,13 +17,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Purchases.logLevel = .debug
         Purchases.configure(withAPIKey: AppConstants.shared.revenueCatApiKey)
         
-        Purchases.shared.getCustomerInfo { (customerInfo, error) in
-            AppProvider.shared.isUserSubscribed = customerInfo?.entitlements.all["pro"]?.isActive == true
-        }
+//        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+//            AppProvider.shared.isUserSubscribed = customerInfo?.entitlements.all["pro"]?.isActive == true
+//        }
         
         Superwall.configure(apiKey: AppConstants.shared.superWallApiKey, purchaseController: purchaseController)
         
-        purchaseController.syncSubscriptionStatus()
+//        purchaseController.syncSubscriptionStatus()
         
         UNUserNotificationCenter.current().delegate = self
         

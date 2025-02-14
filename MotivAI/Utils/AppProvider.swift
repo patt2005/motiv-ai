@@ -38,7 +38,7 @@ class AppProvider: ObservableObject {
     @Published var quotes = [Quote]()
     @Published var likedQuotes = [Quote]()
     
-    @Published var isUserSubscribed = false
+    @Published var isUserSubscribed = true
     
     @Published var showQuoteDetails = false
     @Published var selectedQuote: Quote?

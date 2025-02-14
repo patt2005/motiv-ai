@@ -144,7 +144,7 @@ struct InfoOnboardingView: View {
                             }
                             AppProvider.shared.completeOnboarding()
                             AppProvider.shared.showInfoOnboarding = false
-                            Superwall.shared.register(event: "campaign_trigger")
+//                            Superwall.shared.register(event: "campaign_trigger")
                         } else {
                             withAnimation {
                                 data[info.parameter] = selectedOption.isEmpty ? name : selectedOption
